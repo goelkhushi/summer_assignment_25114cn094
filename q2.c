@@ -1,11 +1,12 @@
-#include<stdio.h>
+#include <stdio.h>
 int main(){
-    int n,muti =1;
-    printf("enter a n natural number is");
-    scanf("%d",&n);
-    for(int i=1;i<=n;i++){
-        muti = muti*i;
+    int num,multi;
+    printf("enter a number num is");
+    scanf("%d",&num);
+    for(int i=1;i<=10;i++){
+        multi = num*i;
+        printf("%d",multi);
+        printf("\n");
     }
-    printf("the mutiple of n natural number n is %d",muti);
     return 0;
 }
