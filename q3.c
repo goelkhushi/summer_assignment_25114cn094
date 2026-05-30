@@ -1,11 +1,13 @@
 #include<stdio.h>
 int main(){
-    int n ,fact=1;
-    printf("enter a n number");
+    int n,product =1,r;
+    printf("enter a number n is");
     scanf("%d",&n);
-    for(int i=1;i<=n;i++){
-        fact =fact*i;
+    while(n!=0){
+        r =n%10;
+        product = product*r;
+        n = n/10;
     }
-    printf("the factorial of n number is %d",fact);
+    printf("the product of digits of a number n is %d",product);
     return 0;
 }
