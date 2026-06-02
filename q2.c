@@ -1,12 +1,13 @@
-#include <stdio.h>
+#include<stdio.h>
 int main(){
-    int num,multi;
-    printf("enter a number num is");
-    scanf("%d",&num);
-    for(int i=1;i<=10;i++){
-        multi = num*i;
-        printf("%d",multi);
-        printf("\n");
+    int n ,sum =0,r;
+    printf("enter a number n is");
+    scanf("%d",&n);
+    while(n!=0){
+        r =n%10;
+        sum = sum*10+r;
+        n = n/10;
     }
+    printf("the reverse of a number n %d is %d",n,sum);
     return 0;
 }
