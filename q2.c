@@ -1,13 +1,20 @@
 #include<stdio.h>
 int main(){
-    int n ,sum =0,r;
-    printf("enter a number n is");
+    int n;
+    printf("how many range you want to print a prime number");
     scanf("%d",&n);
-    while(n!=0){
-        r =n%10;
-        sum = sum*10+r;
-        n = n/10;
+    for(int i=1;i<=n;i++){
+        int p=0;
+        for(int j=2;j<i;j++){
+            if(i%j==0){
+                p=1;
+                break;
+            }
+        }
+        if (p==0){
+            printf("%d",i);
+        }
+        printf("\n");
     }
-    printf("the reverse of a number n %d is %d",n,sum);
     return 0;
 }

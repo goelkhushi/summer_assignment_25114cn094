@@ -1,13 +1,15 @@
 #include<stdio.h>
 int main(){
-    int n,product =1,r;
-    printf("enter a number n is");
-    scanf("%d",&n);
-    while(n!=0){
-        r =n%10;
-        product = product*r;
-        n = n/10;
+    int num1,num2 ,gcd;
+    printf("enter a number num1 is");
+    scanf("%d",&num1);
+    printf("enter a number num2 is");
+    scanf("%d",&num2);
+    for (int i=1;i<=num1;i++){
+        if(num1%i==0 && num2%i==0){
+            gcd =i;
+        }
     }
-    printf("the product of digits of a number n is %d",product);
-    return 0;
+    printf("gcd of two numbers %d and %d is %d",num1,num2,gcd);
+    return 0;   
 }
