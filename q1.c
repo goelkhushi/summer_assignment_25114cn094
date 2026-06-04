@@ -1,18 +1,12 @@
 #include<stdio.h>
 int main(){
-    int num,p=0;
-    printf("enter a number n is");
-    scanf("%d",&num);
-    for(int i=2;i<num;i++){
-        if(num%i==0){
-            p=1;
-            break;
-        }
+    int a=0,b=1,sum=0;
+    for(int i=1;i<=5;i++){
+        sum = a+b;
+        printf("%d",sum);
+        printf("\n");
+        a=b;
+        b= sum;
     }
-    if (p==0){
-        printf("number num %d is a prime number",num);
-    }
-    else
-    printf("number num %d is not a prime number",num);
     return 0;
 }

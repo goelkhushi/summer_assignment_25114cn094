@@ -1,20 +1,14 @@
 #include<stdio.h>
 int main(){
-    int n;
-    printf("how many range you want to print a prime number");
+    int n,a=0,b=1,sum=0;
+    printf("enter a number of term which fibo series you want to see");
     scanf("%d",&n);
     for(int i=1;i<=n;i++){
-        int p=0;
-        for(int j=2;j<i;j++){
-            if(i%j==0){
-                p=1;
-                break;
-            }
-        }
-        if (p==0){
-            printf("%d",i);
-        }
+        sum = a+b;
+        printf("%d",sum);
         printf("\n");
+        a=b;
+        b=sum;
     }
     return 0;
 }

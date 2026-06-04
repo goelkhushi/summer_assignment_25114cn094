@@ -1,15 +1,18 @@
 #include<stdio.h>
 int main(){
-    int num1,num2 ,gcd;
-    printf("enter a number num1 is");
-    scanf("%d",&num1);
-    printf("enter a number num2 is");
-    scanf("%d",&num2);
-    for (int i=1;i<=num1;i++){
-        if(num1%i==0 && num2%i==0){
-            gcd =i;
-        }
+    int num,n1,r,sum =0;
+    printf("enter a number num is");
+    scanf("%d",&num);
+    n1=num;
+    while(num!=0){
+        r = num%10;
+        sum = sum+(r*r*r);
+        num = num/10;
     }
-    printf("gcd of two numbers %d and %d is %d",num1,num2,gcd);
-    return 0;   
+    if (n1==sum){
+        printf("the number %d is an armstrong number",n1);
+    }
+    else
+    printf("the number %d is not an armstrong number",n1);
+    return 0;
 }
