@@ -1,20 +1,25 @@
 #include<stdio.h>
 int main(){
-    int num,n1,sum=0,r;
-    printf("enter a number of range you want see an armstrong number");
+    int num,r,p1=0,a=0;
+    printf("enter a number num is");
     scanf("%d",&num);
-    for(int i=1; i<=num;i++){
-        n1 =i;
-        sum=0;
-        while(i!=0){
-            r = i%10;
-            sum = sum+(r*r*r);
-            i = i/10;
-        }
-        if ( n1 == sum){
-            printf("%d",n1);
-            printf("\n");
+    for(int i=1;i<=num;i++){
+        r =num%i;
+        if(r == 0){
+            for(int j=2;j<i;j++){
+                if (i%j ==0){
+                    p1 =0;
+                    break;
+                }
+                p1 =i;
+            }
+            if(p1!=0){
+                if(p1>a){
+                    a =p1;
+                }
+            }
         }
     }
+    printf("the largest prime factor of  num %d is %d",num ,a);
     return 0;
 }
