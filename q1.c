@@ -1,25 +1,13 @@
 #include<stdio.h>
 int main(){
-    int num,r,p1=0,a=0;
-    printf("enter a number num is");
-    scanf("%d",&num);
-    for(int i=1;i<=num;i++){
-        r =num%i;
-        if(r == 0){
-            for(int j=2;j<i;j++){
-                if (i%j ==0){
-                    p1 =0;
-                    break;
-                }
-                p1 =i;
-            }
-            if(p1!=0){
-                if(p1>a){
-                    a =p1;
-                }
-            }
-        }
+    int dec,bin =0 ,r;
+    printf("enter a decimal number is");
+    scanf("%d",&dec);
+    while(dec!=0){
+        r = dec%2;
+        bin = bin*10 +r;
+        dec = dec/2;
     }
-    printf("the largest prime factor of  num %d is %d",num ,a);
+    printf("the binary number is %d",bin);
     return 0;
 }

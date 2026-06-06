@@ -1,11 +1,16 @@
+// count set bits in a number
 #include<stdio.h>
 int main(){
-    int num;
-    printf("enter a number num is");
+    int num,count,r;
+    printf("enter a number is ");
     scanf("%d",&num);
-    for(int i=1;i<=num; i++){
-        if (num%i==0){
-            printf("%d",i);
+    while(num!=0){
+        r = num%2;
+        if(r ==1){
+            count++;
         }
+        num  = num/2;
     }
+    printf("the number of set bits is %d",count);
+    return 0; 
 }

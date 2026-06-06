@@ -1,22 +1,17 @@
-
 #include<stdio.h>
+#include<math.h>
 int main(){
-    int num,r,n1,fact =1,sum=0; 
-    printf("enter a number num is");
-    scanf("%d",&num);
-    n1 = num;
-    while(num!=0){
-        r= num%10;
-        fact =1;
-        for(int i=1;i<=r;i++){
-            fact = fact*i;
+    int bin ,dec =0,r,p=0;
+    printf("enter a binary number is");
+    scanf("%d", &bin);
+    while(bin !=0){
+        r = bin%10;
+        if(r==1){
+            dec = dec + pow(2,p);
         }
-        sum = sum+fact;
-        num = num/10;
+        p++;
+        bin = bin/10;        
     }
-    if (n1 == sum){
-        printf(  "the number num %d is a strong number",n1);
-    }
-    else
-    printf("the number num %d is not a strong number",n1);
+    printf("the decimal number is %d",dec);
+    return 0;        
 }
