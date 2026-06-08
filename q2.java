@@ -1,23 +1,15 @@
-package day_7;
+package day_8;
 import java.util.Scanner;
 
 public class q2 {
-    public static void main(String[]args){
-        Scanner sc =new Scanner(System.in);
-        int n = sc.nextInt();
-        int a = 0;
-        int b = 1;
-        int sum =0;
-        int fibo = fiobonacci(a,b,sum,n);
-        System.out.println("fibonacci of nth term is"+fibo);
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        for (int i=1;i<=5;i++){
+            for (int j= 1;j<=i;j++){
+                System.out.print(" "+j);
+            }
+            System.out.println();
+        }
         sc.close();
-    }
-    public static  int fiobonacci(int a,int b,int sum,int n){
-        if (n==1||n==2)
-            return b;
-        sum = a+b;
-        a =b;
-        b=sum;
-        return (fiobonacci(a,b,sum,n-1));
     }    
 }
