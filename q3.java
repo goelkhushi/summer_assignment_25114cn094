@@ -1,14 +1,14 @@
-package day_8;
+package day_9;
 
 public class q3 {
     public static void main(String[] args){
-        for(int i =1;i<=5;i++){
-            char ch = 'A';
-            for (int j=1;j<=i;j++){
-                System.out.print(" "+ch);
-                ch++;
+        char ch = 'A';
+        for (int i=1;i<=5;i++){
+            for (int  j=1;j<=i;j++){
+                System.out.print(ch+" ");
             }
-            System.out.println();            
+            ch++;
+            System.out.println();
         }
     }    
 }
