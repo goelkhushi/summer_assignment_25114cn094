@@ -1,23 +1,19 @@
-package day_10;
+package day11;
+import java.util.Scanner;
 
 public class q2 {
     public static void main(String[] args){
-        for (int i=1;i<=5;i++){
-            for (int j=i;j <2*i;j++){
-                if (i==1){
-                    for(int k =1;k<10;k++){
-                        System.out.print("*");
-                    }
-                }
-                else
-                    System.out.print(" ");
-            }
-            if(i!=1){
-                for (int j =i; j<10-i;j++){
-                    System.out.print("*");
-                }
-            }
-            System.out.println();
-        }
-    }   
+        Scanner sc = new Scanner(System.in);
+        int n1 = sc.nextInt();
+        int n2 = sc.nextInt();
+        int max = maxoftwonumbers(n1,n2);
+        System.out.println("max of two numbers is"+max);
+        sc.close();
+    }
+    public static int maxoftwonumbers(int n1,int n2){
+        if(n1>n2)
+            return n1;
+        return n2;
+    }
+        
 }

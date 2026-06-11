@@ -1,28 +1,25 @@
-package day_10;
+package day11;
+import java.util.Scanner;
 
 public class q3 {
     public static void main(String[] args){
-        for(int i=1;i<=5;i++){
-            for(int j=i;j<5;j++){
-                System .out.print(" ");
+        Scanner sc = new Scanner(System.in);
+        int num = sc.nextInt();
+         int prime =primenumber(num);
+         if(prime ==0){
+            System.out.println("it is a prime number");
+         }
+         else
+            System.out.println("it is not a prime number");
+        sc.close();
+    }
+    public static int primenumber(int num){
+        for(int i=2;i<num;i++){
+            if (num%i==0){
+                return 1;
             }
-            if(i!=1){
-                int p =1;
-                for(int j=i;j<=2*i-1;j++){
-                    System.out.print(p+" ");
-                    p++;
-                }
-                int k =1;
-               for(int j=i; j<=2*i-2;j++){
-                    System.out.print(k+" ");
-                    k++;
-                }
-                System.out.println();
-            }
-            else{
-                System.out.print(1+" ");
-            }
-            System.out.println();
-        }        
-    }    
+        }
+        return 0;       
+    }
+          
 }
