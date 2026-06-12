@@ -1,25 +1,24 @@
-package day11;
+package day12;
 import java.util.Scanner;
 
 public class q3 {
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
-        int num = sc.nextInt();
-         int prime =primenumber(num);
-         if(prime ==0){
-            System.out.println("it is a prime number");
-         }
-         else
-            System.out.println("it is not a prime number");
+        int a=0;
+        int b =1;
+        int sum =0;
+        System.out.println("enter a number of ters of fibonacci series");
+        int n= sc.nextInt();
+        int fibo = fibonacci(a,b,sum,n);
+        System.out.println(fibo+" ");
         sc.close();
     }
-    public static int primenumber(int num){
-        for(int i=2;i<num;i++){
-            if (num%i==0){
-                return 1;
-            }
-        }
-        return 0;       
-    }
-          
+    public static int fibonacci(int a ,int b,int sum,int n){
+        if (n==0)
+            return sum;
+        sum = a+b;
+        a =b;
+        b=sum;
+        return fibonacci(a,b,sum,n-1);
+    }    
 }
