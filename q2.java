@@ -1,27 +1,23 @@
-package day12;
+package day13;
 import java.util.Scanner;
 
 public class q2 {
     public static void main(String[] args){
-        Scanner sc = new Scanner(System.in);
-        System.out.println("enter a new number");
-        int num =sc.nextInt();
-        int num1 = armstrong(num);
-        if (num == num1){
-            System.out.println("it is an armstrong number");
+        Scanner sc =  new Scanner(System.in);
+        System.out.println("enter a size of an array");
+        int n= sc.nextInt();
+        int arr[] = new int[n];
+        for(int i=0;i<n;i++){
+            System.out.println("enter a number");
+            arr[i] =sc.nextInt();
         }
-        else
-            System.out.println("it is not an armstrong number");
+        int sum =0;
+        for(int i=0;i<n;i++){
+            sum = sum+arr[i];
+        }
+        int avg = (sum/n);
+        System.out.println(sum+" ");
+        System.out.println(avg+" ");
         sc.close();
-    }
-    public static int armstrong(int num){
-        int r ;
-        int sum=0;
-        while(num!=0){
-            r = num%10;
-            sum = sum+(r*r*r);
-            num =num/10;
-        }
-        return sum;
     }    
 }
