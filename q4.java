@@ -1,27 +1,24 @@
-package day13;
+package day14;
 import java.util.Scanner;
 
 public class q4 {
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
-        System.out.println("enter a size of an array");
+        System.out.println("enter a size of an array ");
         int n = sc.nextInt();
-        int arr[] = new int[n];
-        for(int i=0;i<arr.length;i++){
+        int arr[]  = new int[n];
+        for(int i=0;i<n;i++){
             System.out.println("enter a number");
-            arr [i] = sc.nextInt();
+            arr[i] = sc.nextInt();
         }
-        int counte =0;
-        int counto =0;
-        for(int i=0;i<arr.length;i++){
-            if(arr[i]%2==0){
-                counte++;
+        for(int i=0;i<n-1;i++){
+            for(int j=i+1;j<n;j++){
+                if(arr[i] == arr[j]){
+                    System.out.println(arr[i]+" ");
+                    break;
+                }                
             }
-            else
-                counto++;
         }
-        System.out.println("count of even numbers in an array is"+counte);
-        System.out.println("count of odd numbers of an array is"+counto);
         sc.close();
     }    
 }
