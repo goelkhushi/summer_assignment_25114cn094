@@ -1,28 +1,25 @@
-package day14;
-import java.util.Scanner;
+package day15;
+import java.util.*;
 
 public class q3 {
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
         System.out.println("enter a size of an array");
-        int n =sc.nextInt();
-        int arr[] =new int[n];
+        int n = sc.nextInt();
+        ArrayList<Integer> al =new ArrayList<>();
         for(int i=0;i<n;i++){
-            System.out.println("enter a number");
-            arr[i] = sc.nextInt();
+            int num = sc.nextInt();
+            al.add(num);
         }
-        int max =arr[0];
-        int smax =arr[0];
-        for(int i=0;i<n;i++){
-             if (arr[i]>max){
-                smax = max;
-                max =arr[i];
-             }
-             if(arr[i]>smax && arr[i]!=max){
-                smax = arr[i];
-             }
+        System.out.println("before rotation array right is "+al);
+        for(int i=0;i<n-1;i++){
+            int p =al.get(n-1);
+            for(int j = n-1;j>0;j--){
+                al.set(j,al.get(j-1));
+            }
+            al.set(0,p);
         }
-        System.out.println("second largest of an array is"+smax);
+        System.out.println("after rotation array right is "+al);
         sc.close();
-    }    
+    }   
 }

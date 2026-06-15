@@ -1,26 +1,25 @@
-package day14;
-import java.util.Scanner;
+package day15;
+import java.util.*;
 
 public class q2 {
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
-        System.out.println("enter the size of an array");
+        ArrayList<Integer> al = new ArrayList<Integer>();
+        System.out.println("enter a size of an aray");
         int n = sc.nextInt();
-        int arr[] = new int[n];
-        for(int i=0;i<n;i++){
-            System.out.println("enter a number");
-            arr[i] = sc.nextInt();
+        for(int i= 0;i<n;i++){
+            int num = sc.nextInt();
+            al.add(num);
         }
-        int num = sc.nextInt();
-        int count =0;
+        System.out.println("before rotating an array left is"+al);
         for(int i=0;i<n-1;i++){
-            for(int j =1;j<n;j++){
-                if (arr[i] ==num){
-                    count++;
-                }
-            System.out.println("frequency of num is"+arr[i]+" "+count);
+            int k = al.get(0);
+            for (int j=1;j<n;j++){
+                al.set(j-1,al.get(j));
             }
+            al.set(n-1,k);
         }
+        System.out.println("after rotating an array left is"+al);
         sc.close();
     }    
 }

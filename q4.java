@@ -1,24 +1,23 @@
-package day14;
-import java.util.Scanner;
+package day15;
+import java.util.*;
 
 public class q4 {
     public static void main(String[] args){
-        Scanner sc = new Scanner(System.in);
-        System.out.println("enter a size of an array ");
-        int n = sc.nextInt();
-        int arr[]  = new int[n];
-        for(int i=0;i<n;i++){
-            System.out.println("enter a number");
-            arr[i] = sc.nextInt();
+        int arr[] ={1,2,6,0,9,0,8,7,0,0,6,7,7,0,9};
+        ArrayList<Integer> list  = new ArrayList<>();
+        for(int i=0;i<arr.length;i++){
+            list.add(arr[i]);
         }
-        for(int i=0;i<n-1;i++){
-            for(int j=i+1;j<n;j++){
-                if(arr[i] == arr[j]){
-                    System.out.println(arr[i]+" ");
-                    break;
-                }                
-            }
+        System.out.println("befor moving end to zeroes"+list);
+        for(int i =0;i<list.size();i++){
+            if (list.get(i) ==0){
+                for(int j=i+1;j<list.size();j++){
+                    list.set(j-1,list.get(j));
+                }
+                list.set(list.size()-1,0);
+                i--;               
+            }          
         }
-        sc.close();
+        System.out.println("after moving end to zeroes is "+list);      
     }    
 }

@@ -1,23 +1,22 @@
-package day14;
-import java.util.Scanner;
+package day15;
+import java.util.*;
 
 public class q1 {
-    public  static void main(String[] args){
+    public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
         System.out.println("enter a size of an array");
         int n = sc.nextInt();
-        int arr[] = new int[n];
-        for (int i=0;i<arr.length;i++){
-            System.out.println("enter a number");
-            arr[i] = sc.nextInt();
+        ArrayList<Integer> al = new ArrayList<Integer>(n);
+        for(int i=0;i<n;i++){
+            al.add(i);
         }
-        System.out.println("enter a number you want to search");
-        int num = sc.nextInt();
-        for (int i=0;i<arr.length;i++){
-            if(num == arr[i]){
-                System.out.println(arr[i]+" ");
-            }
+        System.out.println("before reverse an array"+al);
+        int p=0;
+        for(int i=n-1;i>=0;i--){
+            al.set(p,i);
+            p++;
         }
-        sc.close();
+        System.out.println("after reverse an array is "+al);
+        sc.close();            
     }    
 }
