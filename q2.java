@@ -1,25 +1,31 @@
-package day15;
+package day16;
 import java.util.*;
 
 public class q2 {
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
-        ArrayList<Integer> al = new ArrayList<Integer>();
-        System.out.println("enter a size of an aray");
-        int n = sc.nextInt();
-        for(int i= 0;i<n;i++){
-            int num = sc.nextInt();
-            al.add(num);
+        int arr[] ={1,1,2,3,4,2,3,4,5,6,7,9,8,6,7,8,1,2,1,2,1,1,1,4,5,6};
+        ArrayList<Integer> list = new ArrayList<>();
+        for(int i=0;i<arr.length;i++){
+            list.add(arr[i]);
         }
-        System.out.println("before rotating an array left is"+al);
-        for(int i=0;i<n-1;i++){
-            int k = al.get(0);
-            for (int j=1;j<n;j++){
-                al.set(j-1,al.get(j));
+        list.toArray();
+        ArrayList<Integer>  list1 = new ArrayList<>();
+        for(int i =0;i<list.size();i++){
+            if(!list1.contains(list.get(i))){
+                list1.add(list.get(i));
+            }                                
+        }
+        int maxfreq = 0;
+        int num =0;
+        for(int i=0;i<list1.size();i++){
+            int freq = Collections.frequency(list,list1.get(i));
+            if(freq>maxfreq){
+                maxfreq = freq;
+                num =list1.get(i);
             }
-            al.set(n-1,k);
         }
-        System.out.println("after rotating an array left is"+al);
+        System.out.println("maximum frequency of num is"+ num +" "+maxfreq);
         sc.close();
-    }    
+    }   
 }

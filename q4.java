@@ -1,23 +1,25 @@
-package day15;
-import java.util.*;
+package day16;
+import java.util.*; 
 
 public class q4 {
     public static void main(String[] args){
-        int arr[] ={1,2,6,0,9,0,8,7,0,0,6,7,7,0,9};
-        ArrayList<Integer> list  = new ArrayList<>();
+        Scanner sc = new Scanner(System.in);
+        int arr[] ={1,2,3,4,5,6,1,2,3,4,5,1,6,7,7,8,9,10};
+        ArrayList<Integer> list =  new ArrayList<>();
         for(int i=0;i<arr.length;i++){
-            list.add(arr[i]);
+            list.add((arr[i]));                   
         }
-        System.out.println("befor moving end to zeroes"+list);
-        for(int i =0;i<list.size();i++){
-            if (list.get(i) ==0){
-                for(int j=i+1;j<list.size();j++){
-                    list.set(j-1,list.get(j));
-                }
-                list.set(list.size()-1,0);
-                i--;               
-            }          
+        ArrayList<Integer> list1 = new ArrayList<>();
+        for(int i=0;i<list.size();i++){
+            if(!list1.contains(list.get(i))){
+                list1.add(list.get(i));
+            }
         }
-        System.out.println("after moving end to zeroes is "+list);      
-    }    
+        list.clear();
+        for(int num:list1){
+            list.add(num);
+        }
+        System.out.println("after removing duplictes elements in the list is"+list);
+        sc.close();
+    }   
 }
