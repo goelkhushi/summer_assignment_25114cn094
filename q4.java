@@ -1,25 +1,50 @@
-package day16;
-import java.util.*; 
+package day17;
+import java.util.*;
 
 public class q4 {
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
-        int arr[] ={1,2,3,4,5,6,1,2,3,4,5,1,6,7,7,8,9,10};
-        ArrayList<Integer> list =  new ArrayList<>();
-        for(int i=0;i<arr.length;i++){
-            list.add((arr[i]));                   
-        }
-        ArrayList<Integer> list1 = new ArrayList<>();
-        for(int i=0;i<list.size();i++){
-            if(!list1.contains(list.get(i))){
-                list1.add(list.get(i));
-            }
-        }
-        list.clear();
-        for(int num:list1){
+        System.out.println("enter a size of first arrray n1 is");
+        int n1 = sc.nextInt();
+        System.out.println("enter a size of second array n1 is ");
+        int n2 = sc.nextInt();
+        ArrayList<Integer> list = new ArrayList<>(n1);
+        for(int i =0;i<n1;i++){
+            int num = sc.nextInt();
             list.add(num);
         }
-        System.out.println("after removing duplictes elements in the list is"+list);
+        ArrayList<Integer> list1 = new ArrayList<>(n2);
+        for(int i =0;i<n2;i++){
+            int num = sc.nextInt();
+            list1.add(num);
+        }
+        list.toArray();
+        list1.toArray();
+        int nf = n1+n2;
+        ArrayList<Integer> list3 = new ArrayList<>(nf);
+        if(n1 ==n2){
+            int min1 =0;
+            int min2 = 0;
+            while(list.size() != 0 ){
+                min1 = Collections.min(list);
+                min2 = Collections.min(list1);
+                if(min1<min2){
+                    list.remove(Integer.valueOf(min1));
+                }
+                else if(min1>min2){
+                    list.remove(Integer.valueOf(min2));
+                }
+                else{
+                    list3.add(min1);
+                    list.remove(Integer.valueOf(min1));
+                    list1.remove(Integer.valueOf(min2));
+                }
+            }              
+        }
+        System.out.print(list3);
         sc.close();
-    }   
+    }    
 }
+
+
+    
