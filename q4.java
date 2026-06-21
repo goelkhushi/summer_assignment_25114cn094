@@ -1,29 +1,27 @@
-package day20;
+package day_21;
+
 import java.util.*;
 
 public class q4 {
     public static void main(String[] args){
-        Scanner sc = new Scanner("System.in");
-        System.out.println("enter a row of an array is");
-        int n1 = sc.nextInt();
-        System.out.println("enter a column of an array is");
-        int r1 = sc.nextInt();
-        int arr[][] = new int[n1][r1];
-        int sum =0;
-        for(int i=1;i<n1;i++){
-            for(int j=1;j<r1;j++){
-                int num = sc.nextInt();
-                arr[n1][r1] = num;
+        Scanner sc =new Scanner(System.in);
+        String s = new String();
+        s = sc.next();
+        int countlower =0;
+        int countupper =0;
+        for(int i=0;i<s.length();i++){
+            char  ch= s.charAt(i);
+            if(Character.isUpperCase(ch)){
+                countupper++;
+            }
+            else if(Character.isLowerCase(ch)){
+                countlower++;
             }
         }
-        for(int j=1;j<=r1;j++){
-            sum =0;
-            for(int i=1;i<=n1;i++){
-                sum = sum+arr[i][j];
-            }
-            System.out.println("sum of column j of an array is"+j+" "+sum);
-        }
-        sc.close();    
-    }    
-}
+        System.out.println("count of lower case is"+countlower);
+        System.out.println("count of upper case is"+countupper);
+        sc.close();
 
+    }
+    
+}
