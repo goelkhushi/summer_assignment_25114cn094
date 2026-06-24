@@ -1,33 +1,24 @@
-package day23;
+package day24;
 import java.util.*;
 
-public class q1 {
-    public static void main(String[] args){
-        Scanner sc =  new Scanner(System.in);
-        String s =new String();
+public class q1{
+    public  static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        String s = new String();
         s = sc.nextLine();
-        ArrayList<Integer> list = new ArrayList<>();
-        String s1 ="";
-        for(int i=0;i<s.length()-1;i++){
-            int count =0;
-            char ch = s.charAt(i);
-            if(!s1.contains( String.valueOf(ch))){
-                for(int j=i+1;j<s.length();j++){
-                    if(ch == s.charAt(j)){
-                        count++;
-                    }
-                }             
+        char[] s1 = s.toCharArray();
+        int n =s1.length;
+        for(int i=0;i<n-1;i++){
+            char ch = s1[i];
+            for(int j=i+1;j<n;j++){
+                s1[j-1] = s1[j];
             }
-            list.add(count);
-            s1 += ch;  
+            s1[n-1] = ch;
         }
-        for(int i=0;i<list.size();i++){
-            if (list.get(i) ==0){
-                System.out.println(s1.charAt(i));
-                break;
-            }
-        }
+        System.out.println(s1);
         sc.close();
-    }   
+    }
 }
+
+    
 

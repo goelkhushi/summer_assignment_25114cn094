@@ -1,35 +1,22 @@
-package day23;
+package day24;
 import java.util.*;
-public class q4{
+
+public class q4 {
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
         String s = new String();
-        s = sc.nextLine();
-        ArrayList<Integer> list = new ArrayList<>();
-        String s1 ="";
+        s =sc.nextLine();
         for(int i=0;i<s.length()-1;i++){
-            int count =0;
-            char ch = s.charAt(i);
-            if(!s1.contains( String.valueOf(ch))){
-                for(int j=i+1;j<s.length();j++){
-                    if(ch == s.charAt(j)){
-                        count++;
-                    }
-                }             
+            for(int j=i+1;j<s.length();j++){
+                if(s.charAt(i) ==s.charAt(j)){
+                    s = s.replace(s.charAt(j),' ');
+                }
             }
-            list.add(count);
-            s1 += ch;  
+            
         }
-        int max=0;
-        char ch = ' ';
-        for(int i=0;i<list.size();i++){
-            if (list.get(i) >max){
-                max = list.get(i);
-                ch = s1.charAt(i);
-            }
-        }
-        System.out.println("maximum occurence of a character is"+ch);
+        System.out.println("after remving repeating character is"+s);
         sc.close();
-    }   
+    }
 }
+    
 

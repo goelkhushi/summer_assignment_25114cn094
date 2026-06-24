@@ -1,34 +1,38 @@
-package day23;
-import java.util.*;
+package day24;
+
+import java.util.Scanner;
 
 public class q2 {
     public static void main(String[] args){
-        Scanner sc =  new Scanner(System.in);
-        String s =new String();
+        Scanner sc = new Scanner(System.in);
+        String s = new String();
         s = sc.nextLine();
-        ArrayList<Integer> list = new ArrayList<>();
-        String s1 ="";
-        for(int i=0;i<s.length()-1;i++){
+        char[] s1 = s.toCharArray();
+        String s2 ="";
+        char count1 =' ';
+        for (int i=0;i<s1.length;i++){
             int count =0;
-            char ch = s.charAt(i);
-            if(!s1.contains( String.valueOf(ch))){
-                for(int j=i+1;j<s.length();j++){
-                    if(ch == s.charAt(j)){
+            if(!s2.contains(String.valueOf(s1[i]))){
+                for(int j=i+1;j<s1.length;j++){
+                    if(s1[i] == s1[j]){
                         count++;
                     }
-                }             
+                }
             }
-            list.add(count);
-            s1 += ch;  
-        }
-        for(int i=0;i<list.size();i++){
-            if (list.get(i) !=0){
-                System.out.println(s1.charAt(i));
-                break;
+            if(count>0){
+                count1 = (char) count;
+                s2+= s1[i];
+                s2+= count1;
+            }
+            else{
+                s2+= s1[i];
             }
         }
+        System.out.println("before compressing a string is"+s);
+        System.out.println("after compressing a string is"+s2);
         sc.close();
-    }   
+    }
 }
 
+    
 
