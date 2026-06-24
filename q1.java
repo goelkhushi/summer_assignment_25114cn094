@@ -1,17 +1,20 @@
-package day_21;
-import java.util.*;
 
-public class q1 {
+import java.util.*;
+public class q1{
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
         String s = new String();
         s = sc.next();
-        int count =0;
-        for(int i=0;i<s.length();i++){
-            count++;
+        String rev ="";
+        for(int i=s.length()-1;i>=0;i--){
+            rev += s.charAt(i);
         }
-        System.out.println("length of a string is"+count);
+        if(s.equals(rev)){
+            System.out.println("String is a pallindrome");
+        }
+        else{
+            System.out.println("String is not a pallindrome");
+        }
         sc.close();
-    }    
+    }
 }
-
