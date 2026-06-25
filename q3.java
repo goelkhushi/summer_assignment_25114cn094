@@ -1,24 +1,24 @@
-package day24;
+package day25;
+
 import java.util.*;
 
-public class q3{
-    public static void main(String[] args){
+public class q3 {
+    public static void maoin(String[] args){
         Scanner sc = new Scanner(System.in);
+        System.out.println("enter a size of an list");
+        int n1 = sc.nextInt();
         String s = new String();
-        s = sc.nextLine();
-        ArrayList<String> list = new ArrayList<>(Arrays.asList(s.split(" ")));
-        int max = 0;
-        String str = new String();
-        for(String num:list){
-            int count = num.length();
-            if(count > max){
-                max = count;
-                str = num;
-            }            
+        ArrayList<String> list = new ArrayList<>();
+        for(int i=0;i<n1;i++){
+            s = sc.nextLine();
+            list.add(s);            
         }
-        System.out.println("longest word of a string is "+str);
-        sc.close();        
-    }
+        Collections.sort(list);
+        sc.close();
+    }    
 }
 
+    
+
+    
 
