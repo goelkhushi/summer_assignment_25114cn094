@@ -1,50 +1,24 @@
-package day25;
+package day26;
 import java.util.*;
-
-
-public class q1 {
+public class q1{
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
-        String s1= new String();
-        s1 = sc.nextLine();
-        char[] s11 = s1.toCharArray();
-        String s2 = new String();
-        s2 = sc.nextLine();
-        char[] s22 = s2.toCharArray();
-        Arrays.sort(s11);
-        Arrays.sort(s22);
-        String s3 = new String();
-        int n1 = s11.length;
-        int n2 = s22.length;
-        int i=0;
-        int j=0;
-        if(n1==n2){
-            while(i<n1&& j<n2){
-                char min1 = s11[i];
-                char min2 = s22[j];
-                if(min1<min2){
-                    s3+= min1;
-                    i++;
-                }
-                else if(min2<min1){
-                    s3+= min2;
-                    j++;
-                }
-                else{
-                    s3+= min1;
-                    i++;
-                    j++;
-                }                                            
-            }
-            s3+= s11[n1-1];
-            s3+= s22[n2-1];
-            
-            
+        System.out.println("NUMBER GUESSING GAME");
+        ArrayList<Integer> list = new ArrayList<>();
+        for(int i=1;i<=100;i++){
+            list.add(i);
         }
-        System.out.println(s3);
+        System.out.println("how many chances you want to play");
+        int n = sc.nextInt();
+        for(int i=0;i<n;i++){
+            System.out.println("enter a number");
+            int num = sc.nextInt();
+            for(int j=0;j<list.size();j++){
+                if(list.get(j) ==num){
+                    System.out.println("your answer is"+num);
+                }
+            }
+        }
         sc.close();
-    }    
+    }
 }
-
-    
-

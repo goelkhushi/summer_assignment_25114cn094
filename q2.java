@@ -1,25 +1,20 @@
-package day25;
+package day26;
+import java.util.*;
 
-import java.util.Scanner;
-
-public class q2 {
+public class q2{
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
-        String s1 = new String();
-        s1 = sc.nextLine();
-        String s2 = new String();
-        s2 = sc.nextLine();
-        int n1 = s1.length();
-        int n2 = s2.length();
-        for(int i=0;i<n1;i++){
-            for(int j=0;j<n2;j++){
-                if(s1.charAt(i) ==s2.charAt(j)){
-                    System.out.println(s1.charAt(i));
-                }
-            }
+        System.out.println("VOTING ELGIBILITY CRITRIEA");
+        System.out.println("enter a age of person");
+        int age = sc.nextInt();
+        if(age>18){
+            System.out.println("elgible");
+        }
+        else{
+            System.out.println("not eligble");
         }
         sc.close();
-    }    
+    }
 }
     
 
