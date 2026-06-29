@@ -1,31 +1,31 @@
-package day28;
+package day29;
+import java.util.*;
 
-import java.util.ArrayList;
-import java.util.Scanner;
 
-class Contact {
+class Product {
+    int productId;
+    String productName;
+    int quantity;
+    double price;
 
-    int id;
-    String name;
-    String phone;
-    String email;
-    String address;
+    Product(int productId, String productName, int quantity, double price) {
+        this.productId = productId;
+        this.productName = productName;
+        this.quantity = quantity;
+        this.price = price;
+    }
 
-    Contact(int id, String name, String phone, String email, String address) {
-        this.id = id;
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
+    double totalValue() {
+        return quantity * price;
     }
 
     void display() {
         System.out.println("--------------------------------------");
-        System.out.println("Contact ID : " + id);
-        System.out.println("Name       : " + name);
-        System.out.println("Phone      : " + phone);
-        System.out.println("Email      : " + email);
-        System.out.println("Address    : " + address);
+        System.out.println("Product ID    : " + productId);
+        System.out.println("Product Name  : " + productName);
+        System.out.println("Quantity      : " + quantity);
+        System.out.println("Price         : ₹" + price);
+        System.out.println("Total Value   : ₹" + totalValue());
     }
 }
 
@@ -34,19 +34,20 @@ public class q4 {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        ArrayList<Contact> contacts = new ArrayList<>();
+        ArrayList<Product> products = new ArrayList<>();
 
         int choice;
 
         do {
 
-            System.out.println("\n========== CONTACT MANAGEMENT SYSTEM ==========");
-            System.out.println("1. Add Contact");
-            System.out.println("2. View All Contacts");
-            System.out.println("3. Search Contact");
-            System.out.println("4. Update Contact");
-            System.out.println("5. Delete Contact");
-            System.out.println("6. Exit");
+            System.out.println("\n========== INVENTORY MANAGEMENT SYSTEM ==========");
+            System.out.println("1. Add Product");
+            System.out.println("2. View All Products");
+            System.out.println("3. Search Product");
+            System.out.println("4. Update Product");
+            System.out.println("5. Delete Product");
+            System.out.println("6. Calculate Total Inventory Value");
+            System.out.println("7. Exit");
             System.out.print("Enter Your Choice: ");
 
             choice = sc.nextInt();
@@ -55,48 +56,45 @@ public class q4 {
 
                 case 1:
 
-                    System.out.print("Enter Contact ID: ");
+                    System.out.print("Enter Product ID: ");
                     int id = sc.nextInt();
                     sc.nextLine();
 
                     boolean exists = false;
 
-                    for (Contact c : contacts) {
-                        if (c.id == id) {
+                    for (Product p : products) {
+                        if (p.productId == id) {
                             exists = true;
                             break;
                         }
                     }
 
                     if (exists) {
-                        System.out.println("Contact ID Already Exists.");
+                        System.out.println("Product ID Already Exists.");
                         break;
                     }
 
-                    System.out.print("Enter Name: ");
+                    System.out.print("Enter Product Name: ");
                     String name = sc.nextLine();
 
-                    System.out.print("Enter Phone Number: ");
-                    String phone = sc.nextLine();
+                    System.out.print("Enter Quantity: ");
+                    int quantity = sc.nextInt();
 
-                    System.out.print("Enter Email: ");
-                    String email = sc.nextLine();
+                    System.out.print("Enter Price: ");
+                    double price = sc.nextDouble();
 
-                    System.out.print("Enter Address: ");
-                    String address = sc.nextLine();
+                    products.add(new Product(id, name, quantity, price));
 
-                    contacts.add(new Contact(id, name, phone, email, address));
-
-                    System.out.println("Contact Added Successfully.");
+                    System.out.println("Product Added Successfully.");
                     break;
 
                 case 2:
 
-                    if (contacts.isEmpty()) {
-                        System.out.println("No Contacts Found.");
+                    if (products.isEmpty()) {
+                        System.out.println("No Products Available.");
                     } else {
-                        for (Contact c : contacts) {
-                            c.display();
+                        for (Product p : products) {
+                            p.display();
                         }
                     }
 
@@ -104,49 +102,46 @@ public class q4 {
 
                 case 3:
 
-                    System.out.print("Enter Contact ID: ");
+                    System.out.print("Enter Product ID: ");
                     int search = sc.nextInt();
 
                     boolean found = false;
 
-                    for (Contact c : contacts) {
-                        if (c.id == search) {
-                            c.display();
+                    for (Product p : products) {
+                        if (p.productId == search) {
+                            p.display();
                             found = true;
                             break;
                         }
                     }
 
                     if (!found)
-                        System.out.println("Contact Not Found.");
+                        System.out.println("Product Not Found.");
 
                     break;
 
                 case 4:
 
-                    System.out.print("Enter Contact ID to Update: ");
+                    System.out.print("Enter Product ID to Update: ");
                     int update = sc.nextInt();
                     sc.nextLine();
 
                     boolean updated = false;
 
-                    for (Contact c : contacts) {
+                    for (Product p : products) {
 
-                        if (c.id == update) {
+                        if (p.productId == update) {
 
-                            System.out.print("Enter New Name: ");
-                            c.name = sc.nextLine();
+                            System.out.print("Enter New Product Name: ");
+                            p.productName = sc.nextLine();
 
-                            System.out.print("Enter New Phone Number: ");
-                            c.phone = sc.nextLine();
+                            System.out.print("Enter New Quantity: ");
+                            p.quantity = sc.nextInt();
 
-                            System.out.print("Enter New Email: ");
-                            c.email = sc.nextLine();
+                            System.out.print("Enter New Price: ");
+                            p.price = sc.nextDouble();
 
-                            System.out.print("Enter New Address: ");
-                            c.address = sc.nextLine();
-
-                            System.out.println("Contact Updated Successfully.");
+                            System.out.println("Product Updated Successfully.");
 
                             updated = true;
                             break;
@@ -154,24 +149,24 @@ public class q4 {
                     }
 
                     if (!updated)
-                        System.out.println("Contact Not Found.");
+                        System.out.println("Product Not Found.");
 
                     break;
 
                 case 5:
 
-                    System.out.print("Enter Contact ID to Delete: ");
+                    System.out.print("Enter Product ID to Delete: ");
                     int delete = sc.nextInt();
 
                     boolean deleted = false;
 
-                    for (int i = 0; i < contacts.size(); i++) {
+                    for (int i = 0; i < products.size(); i++) {
 
-                        if (contacts.get(i).id == delete) {
+                        if (products.get(i).productId == delete) {
 
-                            contacts.remove(i);
+                            products.remove(i);
 
-                            System.out.println("Contact Deleted Successfully.");
+                            System.out.println("Product Deleted Successfully.");
 
                             deleted = true;
                             break;
@@ -179,13 +174,25 @@ public class q4 {
                     }
 
                     if (!deleted)
-                        System.out.println("Contact Not Found.");
+                        System.out.println("Product Not Found.");
 
                     break;
 
                 case 6:
 
-                    System.out.println("Thank You for Using Contact Management System.");
+                    double totalInventoryValue = 0;
+
+                    for (Product p : products) {
+                        totalInventoryValue += p.totalValue();
+                    }
+
+                    System.out.println("Total Inventory Value = ₹" + totalInventoryValue);
+
+                    break;
+
+                case 7:
+
+                    System.out.println("Thank You for Using Inventory Management System❤️.");
                     break;
 
                 default:
@@ -193,7 +200,7 @@ public class q4 {
                     System.out.println("Invalid Choice.");
             }
 
-        } while (choice != 6);
+        } while (choice != 7);
 
         sc.close();
     }

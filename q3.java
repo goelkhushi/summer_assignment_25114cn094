@@ -1,202 +1,139 @@
-package day28;
+package day29;
 import java.util.*;
 
-class Ticket {
-
-    int ticketId;
-    String passengerName;
-    String source;
-    String destination;
-    String travelDate;
-    double fare;
-
-    Ticket(int ticketId, String passengerName, String source,
-           String destination, String travelDate, double fare) {
-
-        this.ticketId = ticketId;
-        this.passengerName = passengerName;
-        this.source = source;
-        this.destination = destination;
-        this.travelDate = travelDate;
-        this.fare = fare;
-    }
-
-    void display() {
-
-        System.out.println("---------------------------------------");
-        System.out.println("Ticket ID      : " + ticketId);
-        System.out.println("Passenger Name : " + passengerName);
-        System.out.println("Source         : " + source);
-        System.out.println("Destination    : " + destination);
-        System.out.println("Travel Date    : " + travelDate);
-        System.out.println("Fare           : ₹" + fare);
-    }
-}
-
 public class q3 {
-
-    public static void main(String[] args) {
-
+    public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
-        ArrayList<Ticket> tickets = new ArrayList<>();
-
-        int choice;
-
-        do {
-
-            System.out.println("\n========== TICKET BOOKING SYSTEM ==========");
-            System.out.println("1. Book Ticket");
-            System.out.println("2. View All Tickets");
-            System.out.println("3. Search Ticket");
-            System.out.println("4. Update Ticket");
-            System.out.println("5. Cancel Ticket");
-            System.out.println("6. Exit");
+        String s = new String();
+        s = sc.nextLine();
+        int ch;
+        do{
+            System.out.println("MENU DRIVEN STRING OPERATION SYSTEM🧵");
+            System.out.println("\n========== STRING OPERATIONS ==========");
+            System.out.println("1. Display String");
+            System.out.println("2. Find Length");
+            System.out.println("3. Convert to Uppercase");
+            System.out.println("4. Convert to Lowercase");
+            System.out.println("5. Reverse String");
+            System.out.println("6. Check Palindrome");
+            System.out.println("7. Count Vowels");
+            System.out.println("8. Count Consonants");
+            System.out.println("9. Search Character");
+            System.out.println("10. Exit");
             System.out.print("Enter Your Choice: ");
-
-            choice = sc.nextInt();
-
-            switch (choice) {
+            ch = sc.nextInt();
+            switch (ch) {
 
                 case 1:
-
-                    System.out.print("Enter Ticket ID: ");
-                    int id = sc.nextInt();
-                    sc.nextLine();
-
-                    boolean exists = false;
-
-                    for (Ticket t : tickets) {
-                        if (t.ticketId == id) {
-                            exists = true;
-                            break;
-                        }
-                    }
-
-                    if (exists) {
-                        System.out.println("Ticket ID Already Exists.");
-                        break;
-                    }
-
-                    System.out.print("Enter Passenger Name: ");
-                    String name = sc.nextLine();
-
-                    System.out.print("Enter Source: ");
-                    String source = sc.nextLine();
-
-                    System.out.print("Enter Destination: ");
-                    String destination = sc.nextLine();
-
-                    System.out.print("Enter Travel Date (DD/MM/YYYY): ");
-                    String date = sc.nextLine();
-
-                    System.out.print("Enter Fare: ");
-                    double fare = sc.nextDouble();
-
-                    tickets.add(new Ticket(id, name, source, destination, date, fare));
-
-                    System.out.println("Ticket Booked Successfully.");
+                    System.out.println("String = " + s);
                     break;
 
                 case 2:
-
-                    if (tickets.isEmpty()) {
-                        System.out.println("No Tickets Booked.");
-                    } else {
-                        for (Ticket t : tickets) {
-                            t.display();
-                        }
-                    }
-
+                    System.out.println("Length = " + s.length());
                     break;
 
                 case 3:
+                    System.out.println("Uppercase = " + s.toUpperCase());
+                    break;
 
-                    System.out.print("Enter Ticket ID: ");
-                    int search = sc.nextInt();
+                case 4:
+                    System.out.println("Lowercase = " + s.toLowerCase());
+                    break;
+
+                case 5:
+
+                    String rev = "";
+
+                    for (int i = s.length() - 1; i >= 0; i--) {
+                        rev += s.charAt(i);
+                    }
+
+                    System.out.println("Reverse = " + rev);
+
+                    break;
+
+                case 6:
+
+                    rev = "";
+
+                    for (int i = s.length() - 1; i >= 0; i--) {
+                        rev += s.charAt(i);
+                    }
+
+                    if (s.equalsIgnoreCase(rev))
+                        System.out.println("Palindrome");
+                    else
+                        System.out.println("Not a Palindrome");
+
+                    break;
+
+                case 7:
+
+                    int vowels = 0;
+
+                    for (int i = 0; i < s.length(); i++) {
+
+                        char ch1 = Character.toLowerCase(s.charAt(i));
+
+                        if (ch1 == 'a' || ch1 == 'e' || ch1 == 'i'
+                                || ch1 == 'o' || ch1== 'u') {
+
+                            vowels++;
+                        }
+                    }
+
+                    System.out.println("Total Vowels = " + vowels);
+
+                    break;
+
+                case 8:
+
+                    int consonants = 0;
+
+                    for (int i = 0; i < s.length(); i++) {
+
+                        char ch1 = Character.toLowerCase(s.charAt(i));
+
+                        if (Character.isLetter(ch1)) {
+
+                            if (!(ch1 == 'a' || ch1 == 'e' || ch1 == 'i'
+                                    || ch1 == 'o' || ch1 == 'u')) {
+
+                                consonants++;
+                            }
+                        }
+                    }
+
+                    System.out.println("Total Consonants = " + consonants);
+
+                    break;
+
+                case 9:
+
+                    System.out.print("Enter Character to Search: ");
+                    char key = sc.next().charAt(0);
 
                     boolean found = false;
 
-                    for (Ticket t : tickets) {
+                    for (int i = 0; i < s.length(); i++) {
 
-                        if (t.ticketId == search) {
-                            t.display();
+                        if (s.charAt(i) == key) {
+
+                            System.out.println("Character Found at Index " + i);
+
                             found = true;
                             break;
                         }
                     }
 
                     if (!found)
-                        System.out.println("Ticket Not Found.");
+                        System.out.println("Character Not Found.");
 
                     break;
 
-                case 4:
+                case 10:
 
-                    System.out.print("Enter Ticket ID to Update: ");
-                    int update = sc.nextInt();
-                    sc.nextLine();
-
-                    boolean updated = false;
-
-                    for (Ticket t : tickets) {
-
-                        if (t.ticketId == update) {
-
-                            System.out.print("Enter New Passenger Name: ");
-                            t.passengerName = sc.nextLine();
-
-                            System.out.print("Enter New Source: ");
-                            t.source = sc.nextLine();
-
-                            System.out.print("Enter New Destination: ");
-                            t.destination = sc.nextLine();
-
-                            System.out.print("Enter New Travel Date: ");
-                            t.travelDate = sc.nextLine();
-
-                            System.out.print("Enter New Fare: ");
-                            t.fare = sc.nextDouble();
-
-                            System.out.println("Ticket Updated Successfully.");
-
-                            updated = true;
-                            break;
-                        }
-                    }
-
-                    if (!updated)
-                        System.out.println("Ticket Not Found.");
-
-                    break;
-
-                case 5:
-
-                    System.out.print("Enter Ticket ID to Cancel: ");
-                    int cancel = sc.nextInt();
-
-                    boolean deleted = false;
-
-                    for (int i = 0; i < tickets.size(); i++) {
-
-                        if (tickets.get(i).ticketId == cancel) {
-
-                            tickets.remove(i);
-
-                            System.out.println("Ticket Cancelled Successfully.");
-
-                            deleted = true;
-                            break;
-                        }
-                    }
-
-                    if (!deleted)
-                        System.out.println("Ticket Not Found.");
-
-                    break;
-
-                case 6:
-
-                    System.out.println("Thank You for Using Ticket Booking System.");
+                    System.out.println("Thank You!");
                     break;
 
                 default:
@@ -204,7 +141,7 @@ public class q3 {
                     System.out.println("Invalid Choice.");
             }
 
-        } while (choice != 6);
+        } while (ch != 10);
 
         sc.close();
     }

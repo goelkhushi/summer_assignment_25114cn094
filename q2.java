@@ -1,174 +1,145 @@
-package day28;
+package day29;
 import java.util.*;
 
-class Account{
-    int accountnumber ;
-    String accountholder;
-    String accounttype;
-    int balance ;
-    Account(int accountnumber,String accountholder,String accounttype,int balance){
-        this.accountnumber = accountnumber;
-        this.accountholder = accountholder;
-        this.accounttype = accounttype;
-        this.balance = balance;
-    }
-    void Display(){
-        System.out.println("1:ACCOUNT NUMBER"+accountnumber);
-        System.out.println("2:accountholder"+accountholder);
-        System.out.println("3:ACCOUNTTYPE"+accounttype);
-    }
-}
-public class q2{
-    public static void main(String[] args){
+public class q2 {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        ArrayList<Account> account = new ArrayList<>();
         int ch;
+        int arr[] ={3,4,5,6,7,2,5,7,8,9,10,5,6,8};
         do{
-            System.out.println("1:ADD ACCOUNT");
-            System.out.println("2: VIEW ACCOUNT");
-            System.out.println("3:DEPOSIT MONEY");
-            System.out.println("4:WITHDRAWAL MONEY");
-            System.out.println("5:DELETE ACCOUNT");
-            System.out.println("0:EXIT");
+            System.out.println("MENU DRIVEN ARRAY OPERATIONS SYSYTEM");
+            System.out.println("1:DISPLAY THE ARRAY ELEMENTS");
+            System.out.println("2:ADD THE ARRAY ELEMENTS ");
+            System.out.println(" 3:MAXIMUN OF  ARRAY ELEMNTS");
+            System.out.println("4:MINIMUM OF ARRAY ELEMNTS");
+            System.out.println("5:AVERAGE OF ARRAY ELEMENTS");
+            System.out.println("6:COUNT OF EVEN NUMBERS IN AN ARRAY");
+            System.out.println("7:COUNT OF ODD NUMBERS IN AN ARRAY");
+            System.out.println("SORT THE ARRAY ELEMENTS");
+            System.out.println("REVERSE THE ARRAY ELEMMTS");
             System.out.println("ENTER CHOICE");
             ch = sc.nextInt();
             switch(ch){
                 case 1:
-                    System.out.println("ADD ACCOUNT");
-                    System.out.print("Enter Account Number: ");
-                    int accNo = sc.nextInt();
-                    sc.nextLine();
+                    System.out.print("Array Elements: ");
 
-                    boolean exists = false;
-
-                    for (Account a : account) {
-                        if (a.accountnumber == accNo) {
-                            exists = true;
-                            break;
-                        }
+                    for (int num : arr) {
+                        System.out.print(num + " ");
                     }
 
-                    if (exists) {
-                        System.out.println("Account Number Already Exists.");
-                        break;
-                    }
-
-                    System.out.print("Enter Holder Name: ");
-                    String accountholder = sc.nextLine();
-
-                    System.out.print("Enter Account Type (Saving/Current): ");
-                    String accounttype = sc.nextLine();
-
-                    System.out.print("Enter Initial Balance: ");
-                    int balance = sc.nextInt();
-
-                    account.add(new Account(accNo, accountholder, accounttype, balance));
-
-                    System.out.println("Account Created Successfully.");
+                    System.out.println();
                     break;
                 case 2:
-                    if (account.isEmpty()) {
-                        System.out.println("No Accounts Found.");
-                    } else {
-                        for (Account a : account) {
-                            a.Display();
-                        }
+                    int sum = 0;
+
+                    for (int num : arr) {
+                        sum += num;
                     }
 
+                    System.out.println("Sum = " + sum);
                     break;
-
                 case 3:
-                    System.out.print("Enter Account Number: ");
-                    int depositAcc = sc.nextInt();
+                    int max = arr[0];
 
-                    boolean deposited = false;
+                    for (int num : arr) {
 
-                    for (Account a : account) {
-
-                        if (a.accountnumber == depositAcc) {
-
-                            System.out.print("Enter Deposit Amount: ");
-                            int amount = sc.nextInt();
-
-                            if (amount > 0) {
-                                a.balance += amount;
-                                System.out.println("Deposit Successful.");
-                                System.out.println("New Balance: ₹" + a.balance);
-                            } else {
-                                System.out.println("Invalid Amount.");
-                            }
-
-                            deposited = true;
-                            break;
+                        if (num > max) {
+                            max = num;
                         }
                     }
 
-                    if (!deposited)
-                        System.out.println("Account Not Found.");
+                    System.out.println("Maximum Element = " + max);
 
                     break;
                 case 4:
-                    System.out.print("Enter Account Number: ");
-                    int withdrawAcc = sc.nextInt();
+                    int min = arr[0];
 
-                    boolean withdrawn = false;
+                    for (int num : arr) {
 
-                    for (Account a : account) {
-
-                        if (a.accountnumber == withdrawAcc) {
-
-                            System.out.print("Enter Withdrawal Amount: ");
-                            int amount = sc.nextInt();
-
-                            if (amount <= a.balance) {
-                                a.balance -= amount;
-                                System.out.println("Withdrawal Successful.");
-                                System.out.println("Remaining Balance: ₹" + a.balance);
-                            } else {
-                                System.out.println("Insufficient Balance.");
-                            }
-
-                            withdrawn = true;
-                            break;
+                        if (num < min) {
+                            min = num;
                         }
                     }
-                    if (!withdrawn)
-                        System.out.println("Account Not Found.");
+
+                    System.out.println("Minimum Element = " + min);
 
                     break;
                 case 5:
-                    System.out.print("Enter Account Number to Delete: ");
-                    int delete = sc.nextInt();
+                    sum = 0;
 
-                    boolean deleted = false;
+                    for (int num : arr) {
+                        sum += num;
+                    }
 
-                    for (int i = 0; i < account.size(); i++) {
+                    double average = (double) sum / arr.length;
 
-                        if (account.get(i).accountnumber == delete) {
+                    System.out.println("Average = " + average);
 
-                            account.remove(i);
+                    break;
+                case 6:
+                    int even = 0;
 
-                            System.out.println("Account Deleted Successfully.");
+                    for (int num : arr) {
 
-                            deleted = true;
-                            break;
+                        if (num % 2 == 0)
+                            even++;
+                    }
+
+                    System.out.println("Total Even Numbers = " + even);
+
+                    break;
+                case 7:
+                    int odd = 0;
+
+                    for (int num : arr) {
+
+                        if (num % 2 != 0)
+                            odd++;
+                    }
+
+                    System.out.println("Total Odd Numbers = " + odd);
+
+                    break;
+                case 8:
+                    for (int i = 0; i < arr.length - 1; i++) {
+
+                        for (int j = i + 1; j < arr.length; j++) {
+
+                            if (arr[i] > arr[j]) {
+
+                                int temp = arr[i];
+                                arr[i] = arr[j];
+                                arr[j] = temp;
+                            }
                         }
                     }
 
-                    if (!deleted)
-                        System.out.println("Account Not Found.");
+                    System.out.print("Sorted Array: ");
+
+                    for (int num : arr) {
+
+                        System.out.print(num + " ");
+                    }
+
+                    System.out.println();
 
                     break;
-                case 0:
-                    System.out.println("Exiting Bank Account Management.");
-                    break;
-                default:
-                    System.out.println("Invalid Choice.");
+                case 9:
+                    System.out.print("Reverse Array: ");
+
+                    for (int i = arr.length - 1; i >= 0; i--) {
+
+                        System.out.print(arr[i] + " ");
+                    }
+
+                    System.out.println();
+
                     break;
             }
-        } while(ch!=0);
-        System.out.println("PROGRAM IS FINISHED UP😑");
+        }
+        while(ch!=0);
+        System.out.println("THANKS FOR CHOSSING MENU DRIVEN STRING OPERATING SYSYTEM❤️");
         sc.close();
     }
+    
 }
-
