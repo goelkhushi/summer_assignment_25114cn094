@@ -1,53 +1,35 @@
-package day27;
+package day28;
 import java.util.*;
 
-class Employee {
-    int id;
-    String name;
-    String department;
-    double basicSalary;
-    double hra;
-    double da;
-    double tax;
+class Ticket {
 
-    Employee(int id, String name, String department, double basicSalary) {
-        this.id = id;
-        this.name = name;
-        this.department = department;
-        this.basicSalary = basicSalary;
+    int ticketId;
+    String passengerName;
+    String source;
+    String destination;
+    String travelDate;
+    double fare;
 
-        // Salary Calculations
-        hra = basicSalary * 0.20;   // 20%
-        da = basicSalary * 0.10;    // 10%
-        tax = basicSalary * 0.05;   // 5%
-    }
+    Ticket(int ticketId, String passengerName, String source,
+           String destination, String travelDate, double fare) {
 
-    double grossSalary() {
-        return basicSalary + hra + da;
-    }
-
-    double netSalary() {
-        return grossSalary() - tax;
+        this.ticketId = ticketId;
+        this.passengerName = passengerName;
+        this.source = source;
+        this.destination = destination;
+        this.travelDate = travelDate;
+        this.fare = fare;
     }
 
     void display() {
-        System.out.println("--------------------------------------");
-        System.out.println("Employee ID   : " + id);
-        System.out.println("Name          : " + name);
-        System.out.println("Department    : " + department);
-        System.out.println("Basic Salary  : " + basicSalary);
-        System.out.println("HRA (20%)     : " + hra);
-        System.out.println("DA (10%)      : " + da);
-        System.out.println("Tax (5%)      : " + tax);
-        System.out.println("Gross Salary  : " + grossSalary());
-        System.out.println("Net Salary    : " + netSalary());
-    }
 
-    void updateSalary(double salary) {
-        basicSalary = salary;
-        hra = basicSalary * 0.20;
-        da = basicSalary * 0.10;
-        tax = basicSalary * 0.05;
+        System.out.println("---------------------------------------");
+        System.out.println("Ticket ID      : " + ticketId);
+        System.out.println("Passenger Name : " + passengerName);
+        System.out.println("Source         : " + source);
+        System.out.println("Destination    : " + destination);
+        System.out.println("Travel Date    : " + travelDate);
+        System.out.println("Fare           : ₹" + fare);
     }
 }
 
@@ -56,20 +38,20 @@ public class q3 {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        ArrayList<Employee> list = new ArrayList<>();
+        ArrayList<Ticket> tickets = new ArrayList<>();
 
         int choice;
 
         do {
 
-            System.out.println("\n========== SALARY MANAGEMENT SYSTEM ==========");
-            System.out.println("1. Add Employee");
-            System.out.println("2. View All Employees");
-            System.out.println("3. Search Employee");
-            System.out.println("4. Update Salary");
-            System.out.println("5. Delete Employee");
+            System.out.println("\n========== TICKET BOOKING SYSTEM ==========");
+            System.out.println("1. Book Ticket");
+            System.out.println("2. View All Tickets");
+            System.out.println("3. Search Ticket");
+            System.out.println("4. Update Ticket");
+            System.out.println("5. Cancel Ticket");
             System.out.println("6. Exit");
-            System.out.print("Enter Choice: ");
+            System.out.print("Enter Your Choice: ");
 
             choice = sc.nextInt();
 
@@ -77,45 +59,51 @@ public class q3 {
 
                 case 1:
 
-                    System.out.print("Enter Employee ID: ");
+                    System.out.print("Enter Ticket ID: ");
                     int id = sc.nextInt();
                     sc.nextLine();
 
                     boolean exists = false;
 
-                    for (Employee e : list) {
-                        if (e.id == id) {
+                    for (Ticket t : tickets) {
+                        if (t.ticketId == id) {
                             exists = true;
                             break;
                         }
                     }
 
                     if (exists) {
-                        System.out.println("Employee ID Already Exists!");
+                        System.out.println("Ticket ID Already Exists.");
                         break;
                     }
 
-                    System.out.print("Enter Employee Name: ");
+                    System.out.print("Enter Passenger Name: ");
                     String name = sc.nextLine();
 
-                    System.out.print("Enter Department: ");
-                    String dept = sc.nextLine();
+                    System.out.print("Enter Source: ");
+                    String source = sc.nextLine();
 
-                    System.out.print("Enter Basic Salary: ");
-                    double salary = sc.nextDouble();
+                    System.out.print("Enter Destination: ");
+                    String destination = sc.nextLine();
 
-                    list.add(new Employee(id, name, dept, salary));
+                    System.out.print("Enter Travel Date (DD/MM/YYYY): ");
+                    String date = sc.nextLine();
 
-                    System.out.println("Employee Added Successfully.");
+                    System.out.print("Enter Fare: ");
+                    double fare = sc.nextDouble();
+
+                    tickets.add(new Ticket(id, name, source, destination, date, fare));
+
+                    System.out.println("Ticket Booked Successfully.");
                     break;
 
                 case 2:
 
-                    if (list.isEmpty()) {
-                        System.out.println("No Employee Records Found.");
+                    if (tickets.isEmpty()) {
+                        System.out.println("No Tickets Booked.");
                     } else {
-                        for (Employee e : list) {
-                            e.display();
+                        for (Ticket t : tickets) {
+                            t.display();
                         }
                     }
 
@@ -123,82 +111,92 @@ public class q3 {
 
                 case 3:
 
-                    System.out.print("Enter Employee ID: ");
+                    System.out.print("Enter Ticket ID: ");
                     int search = sc.nextInt();
 
                     boolean found = false;
 
-                    for (Employee e : list) {
+                    for (Ticket t : tickets) {
 
-                        if (e.id == search) {
-                            e.display();
+                        if (t.ticketId == search) {
+                            t.display();
                             found = true;
                             break;
                         }
                     }
 
-                    if (!found) {
-                        System.out.println("Employee Not Found.");
-                    }
+                    if (!found)
+                        System.out.println("Ticket Not Found.");
 
                     break;
 
                 case 4:
 
-                    System.out.print("Enter Employee ID: ");
+                    System.out.print("Enter Ticket ID to Update: ");
                     int update = sc.nextInt();
+                    sc.nextLine();
 
                     boolean updated = false;
 
-                    for (Employee e : list) {
+                    for (Ticket t : tickets) {
 
-                        if (e.id == update) {
+                        if (t.ticketId == update) {
 
-                            System.out.print("Enter New Basic Salary: ");
-                            double newSalary = sc.nextDouble();
+                            System.out.print("Enter New Passenger Name: ");
+                            t.passengerName = sc.nextLine();
 
-                            e.updateSalary(newSalary);
+                            System.out.print("Enter New Source: ");
+                            t.source = sc.nextLine();
 
-                            System.out.println("Salary Updated Successfully.");
+                            System.out.print("Enter New Destination: ");
+                            t.destination = sc.nextLine();
+
+                            System.out.print("Enter New Travel Date: ");
+                            t.travelDate = sc.nextLine();
+
+                            System.out.print("Enter New Fare: ");
+                            t.fare = sc.nextDouble();
+
+                            System.out.println("Ticket Updated Successfully.");
+
                             updated = true;
                             break;
                         }
                     }
 
-                    if (!updated) {
-                        System.out.println("Employee Not Found.");
-                    }
+                    if (!updated)
+                        System.out.println("Ticket Not Found.");
 
                     break;
 
                 case 5:
 
-                    System.out.print("Enter Employee ID: ");
-                    int delete = sc.nextInt();
+                    System.out.print("Enter Ticket ID to Cancel: ");
+                    int cancel = sc.nextInt();
 
                     boolean deleted = false;
 
-                    for (int i = 0; i < list.size(); i++) {
+                    for (int i = 0; i < tickets.size(); i++) {
 
-                        if (list.get(i).id == delete) {
+                        if (tickets.get(i).ticketId == cancel) {
 
-                            list.remove(i);
+                            tickets.remove(i);
 
-                            System.out.println("Employee Deleted Successfully.");
+                            System.out.println("Ticket Cancelled Successfully.");
+
                             deleted = true;
                             break;
                         }
                     }
 
-                    if (!deleted) {
-                        System.out.println("Employee Not Found.");
-                    }
+                    if (!deleted)
+                        System.out.println("Ticket Not Found.");
 
                     break;
 
                 case 6:
 
-                    System.out.println("Thank You for Using Salary Management System.");
+                    System.out.println("Thank You for Using Ticket Booking System.");
                     break;
 
                 default:
@@ -211,4 +209,3 @@ public class q3 {
         sc.close();
     }
 }
-

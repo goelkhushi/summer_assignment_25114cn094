@@ -1,73 +1,31 @@
-package day27;
-import java.util.*;
+package day28;
 
-class Student {
+import java.util.ArrayList;
+import java.util.Scanner;
 
-    int rollNo;
+class Contact {
+
+    int id;
     String name;
-    int english;
-    int maths;
-    int science;
-    int computer;
-    int hindi;
+    String phone;
+    String email;
+    String address;
 
-    Student(int rollNo, String name, int english, int maths, int science, int computer, int hindi) {
-        this.rollNo = rollNo;
+    Contact(int id, String name, String phone, String email, String address) {
+        this.id = id;
         this.name = name;
-        this.english = english;
-        this.maths = maths;
-        this.science = science;
-        this.computer = computer;
-        this.hindi = hindi;
-    }
-
-    int total() {
-        return english + maths + science + computer + hindi;
-    }
-
-    double percentage() {
-        return total() / 5.0;
-    }
-
-    String grade() {
-        double per = percentage();
-
-        if (per >= 90)
-            return "A+";
-        else if (per >= 80)
-            return "A";
-        else if (per >= 70)
-            return "B";
-        else if (per >= 60)
-            return "C";
-        else if (per >= 50)
-            return "D";
-        else
-            return "F";
-    }
-
-    String result() {
-        if (english >= 33 && maths >= 33 && science >= 33 && computer >= 33 && hindi >= 33)
-            return "PASS";
-        else
-            return "FAIL";
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
     }
 
     void display() {
-        System.out.println("\n========== MARKSHEET ==========");
-        System.out.println("Roll Number : " + rollNo);
-        System.out.println("Name        : " + name);
-        System.out.println("--------------------------------");
-        System.out.println("English     : " + english);
-        System.out.println("Maths       : " + maths);
-        System.out.println("Science     : " + science);
-        System.out.println("Computer    : " + computer);
-        System.out.println("Hindi       : " + hindi);
-        System.out.println("--------------------------------");
-        System.out.println("Total       : " + total() + "/500");
-        System.out.println("Percentage  : " + percentage() + "%");
-        System.out.println("Grade       : " + grade());
-        System.out.println("Result      : " + result());
+        System.out.println("--------------------------------------");
+        System.out.println("Contact ID : " + id);
+        System.out.println("Name       : " + name);
+        System.out.println("Phone      : " + phone);
+        System.out.println("Email      : " + email);
+        System.out.println("Address    : " + address);
     }
 }
 
@@ -76,20 +34,20 @@ public class q4 {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        ArrayList<Student> students = new ArrayList<>();
+        ArrayList<Contact> contacts = new ArrayList<>();
 
         int choice;
 
         do {
 
-            System.out.println("\n====== MARKSHEET GENERATION SYSTEM ======");
-            System.out.println("1. Add Student");
-            System.out.println("2. View All Marksheets");
-            System.out.println("3. Search Student");
-            System.out.println("4. Update Marks");
-            System.out.println("5. Delete Student");
+            System.out.println("\n========== CONTACT MANAGEMENT SYSTEM ==========");
+            System.out.println("1. Add Contact");
+            System.out.println("2. View All Contacts");
+            System.out.println("3. Search Contact");
+            System.out.println("4. Update Contact");
+            System.out.println("5. Delete Contact");
             System.out.println("6. Exit");
-            System.out.print("Enter Choice: ");
+            System.out.print("Enter Your Choice: ");
 
             choice = sc.nextInt();
 
@@ -97,54 +55,48 @@ public class q4 {
 
                 case 1:
 
-                    System.out.print("Enter Roll Number: ");
-                    int roll = sc.nextInt();
+                    System.out.print("Enter Contact ID: ");
+                    int id = sc.nextInt();
                     sc.nextLine();
 
                     boolean exists = false;
 
-                    for (Student s : students) {
-                        if (s.rollNo == roll) {
+                    for (Contact c : contacts) {
+                        if (c.id == id) {
                             exists = true;
                             break;
                         }
                     }
 
                     if (exists) {
-                        System.out.println("Roll Number Already Exists.");
+                        System.out.println("Contact ID Already Exists.");
                         break;
                     }
 
-                    System.out.print("Enter Student Name: ");
+                    System.out.print("Enter Name: ");
                     String name = sc.nextLine();
 
-                    System.out.print("English Marks: ");
-                    int english = sc.nextInt();
+                    System.out.print("Enter Phone Number: ");
+                    String phone = sc.nextLine();
 
-                    System.out.print("Maths Marks: ");
-                    int maths = sc.nextInt();
+                    System.out.print("Enter Email: ");
+                    String email = sc.nextLine();
 
-                    System.out.print("Science Marks: ");
-                    int science = sc.nextInt();
+                    System.out.print("Enter Address: ");
+                    String address = sc.nextLine();
 
-                    System.out.print("Computer Marks: ");
-                    int computer = sc.nextInt();
+                    contacts.add(new Contact(id, name, phone, email, address));
 
-                    System.out.print("Hindi Marks: ");
-                    int hindi = sc.nextInt();
-
-                    students.add(new Student(roll, name, english, maths, science, computer, hindi));
-
-                    System.out.println("Student Added Successfully.");
+                    System.out.println("Contact Added Successfully.");
                     break;
 
                 case 2:
 
-                    if (students.isEmpty()) {
-                        System.out.println("No Records Found.");
+                    if (contacts.isEmpty()) {
+                        System.out.println("No Contacts Found.");
                     } else {
-                        for (Student s : students) {
-                            s.display();
+                        for (Contact c : contacts) {
+                            c.display();
                         }
                     }
 
@@ -152,87 +104,88 @@ public class q4 {
 
                 case 3:
 
-                    System.out.print("Enter Roll Number: ");
+                    System.out.print("Enter Contact ID: ");
                     int search = sc.nextInt();
 
                     boolean found = false;
 
-                    for (Student s : students) {
-
-                        if (s.rollNo == search) {
-                            s.display();
+                    for (Contact c : contacts) {
+                        if (c.id == search) {
+                            c.display();
                             found = true;
                             break;
                         }
                     }
 
                     if (!found)
-                        System.out.println("Student Not Found.");
+                        System.out.println("Contact Not Found.");
 
                     break;
 
                 case 4:
 
-                    System.out.print("Enter Roll Number: ");
+                    System.out.print("Enter Contact ID to Update: ");
                     int update = sc.nextInt();
+                    sc.nextLine();
 
                     boolean updated = false;
 
-                    for (Student s : students) {
+                    for (Contact c : contacts) {
 
-                        if (s.rollNo == update) {
+                        if (c.id == update) {
 
-                            System.out.print("New English Marks: ");
-                            s.english = sc.nextInt();
+                            System.out.print("Enter New Name: ");
+                            c.name = sc.nextLine();
 
-                            System.out.print("New Maths Marks: ");
-                            s.maths = sc.nextInt();
+                            System.out.print("Enter New Phone Number: ");
+                            c.phone = sc.nextLine();
 
-                            System.out.print("New Science Marks: ");
-                            s.science = sc.nextInt();
+                            System.out.print("Enter New Email: ");
+                            c.email = sc.nextLine();
 
-                            System.out.print("New Computer Marks: ");
-                            s.computer = sc.nextInt();
+                            System.out.print("Enter New Address: ");
+                            c.address = sc.nextLine();
 
-                            System.out.print("New Hindi Marks: ");
-                            s.hindi = sc.nextInt();
+                            System.out.println("Contact Updated Successfully.");
 
-                            System.out.println("Marks Updated Successfully.");
                             updated = true;
                             break;
                         }
                     }
 
                     if (!updated)
-                        System.out.println("Student Not Found.");
+                        System.out.println("Contact Not Found.");
 
                     break;
 
                 case 5:
 
-                    System.out.print("Enter Roll Number: ");
+                    System.out.print("Enter Contact ID to Delete: ");
                     int delete = sc.nextInt();
 
                     boolean deleted = false;
 
-                    for (int i = 0; i < students.size(); i++) {
+                    for (int i = 0; i < contacts.size(); i++) {
 
-                        if (students.get(i).rollNo == delete) {
-                            students.remove(i);
-                            System.out.println("Record Deleted Successfully.");
+                        if (contacts.get(i).id == delete) {
+
+                            contacts.remove(i);
+
+                            System.out.println("Contact Deleted Successfully.");
+
                             deleted = true;
                             break;
                         }
                     }
 
                     if (!deleted)
-                        System.out.println("Student Not Found.");
+                        System.out.println("Contact Not Found.");
 
                     break;
 
                 case 6:
 
-                    System.out.println("Thank You!");
+                    System.out.println("Thank You for Using Contact Management System.");
                     break;
 
                 default:
@@ -245,5 +198,3 @@ public class q4 {
         sc.close();
     }
 }
-
-

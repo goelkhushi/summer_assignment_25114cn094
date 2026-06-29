@@ -1,137 +1,174 @@
-package day27;
+package day28;
 import java.util.*;
-class Employee{
-        int employee_id;
-        String name;
-        String department;
-        String designation;
-        int salary;
-        Employee(int employee_id,String name,String department,String designation,int salary){
-            this.employee_id = employee_id;
-            this.name = name;
-            this.department = department;
-            this.designation =designation;
-            this.salary = salary;
-        }
-        int Salary(){
-            return salary*12;
-        }
-        void Display(){
-            System.out.println("1: EMPLOYEE ID."+employee_id);
-            System.out.println("2:NAME"+name);
-            System.out.println("3:DEPARTMENT"+department);
-            System.out.println("4:DESIGNATION"+designation);
-            System.out.println("5:Slaray"+Salary());
-        }
+
+class Account{
+    int accountnumber ;
+    String accountholder;
+    String accounttype;
+    int balance ;
+    Account(int accountnumber,String accountholder,String accounttype,int balance){
+        this.accountnumber = accountnumber;
+        this.accountholder = accountholder;
+        this.accounttype = accounttype;
+        this.balance = balance;
     }
+    void Display(){
+        System.out.println("1:ACCOUNT NUMBER"+accountnumber);
+        System.out.println("2:accountholder"+accountholder);
+        System.out.println("3:ACCOUNTTYPE"+accounttype);
+    }
+}
 public class q2{
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
-        ArrayList<Employee>employee =new ArrayList<>();
-        int ch = 0;
-        int emp_id = 0;
-        int p = 0;
+        ArrayList<Account> account = new ArrayList<>();
+        int ch;
         do{
-            System.out.println("////EMPLOYEE RECORD MANAGEMENT///");
-            System.out.println("1:ADD RECORD");
-            System.out.println("2:VIEW RECORD");
-            System.out.println("3: UPDATE REORD");
-            System.out.println("4:DELETE RECORD");
+            System.out.println("1:ADD ACCOUNT");
+            System.out.println("2: VIEW ACCOUNT");
+            System.out.println("3:DEPOSIT MONEY");
+            System.out.println("4:WITHDRAWAL MONEY");
+            System.out.println("5:DELETE ACCOUNT");
+            System.out.println("0:EXIT");
             System.out.println("ENTER CHOICE");
             ch = sc.nextInt();
             switch(ch){
                 case 1:
-                    System.out.println("ENTER A EMPLOYEE ID");
-                    emp_id = sc.nextInt();
-                    p = 0;
-                    for(Employee e :employee){
-                        if(e.employee_id == emp_id){
-                            System.out.println(" EMPLOYEE ID ALREADY EXIST");
-                            p=1;
+                    System.out.println("ADD ACCOUNT");
+                    System.out.print("Enter Account Number: ");
+                    int accNo = sc.nextInt();
+                    sc.nextLine();
+
+                    boolean exists = false;
+
+                    for (Account a : account) {
+                        if (a.accountnumber == accNo) {
+                            exists = true;
                             break;
                         }
                     }
-                    if(p==0){
-                            sc.nextLine();
-                            System.out.println("ENTER NAME");
-                            String name = sc.nextLine();
-                            System.out.println("ENTER DEPARTMENT");
-                            String department = sc.nextLine();
-                            System.out.println("ENTER DESIGNATION");
-                            String designation = sc.nextLine();
-                            System.out.println("ENTER SALARY");
-                            int salary = sc.nextInt();
-                            employee.add(new Employee(emp_id,  name,  department,  designation,  salary)) ;
-                            System.out.println("RECORD IN SALRY MAANGEMNET ADD SUCCESFULLY");          
+
+                    if (exists) {
+                        System.out.println("Account Number Already Exists.");
+                        break;
                     }
+
+                    System.out.print("Enter Holder Name: ");
+                    String accountholder = sc.nextLine();
+
+                    System.out.print("Enter Account Type (Saving/Current): ");
+                    String accounttype = sc.nextLine();
+
+                    System.out.print("Enter Initial Balance: ");
+                    int balance = sc.nextInt();
+
+                    account.add(new Account(accNo, accountholder, accounttype, balance));
+
+                    System.out.println("Account Created Successfully.");
                     break;
                 case 2:
-                    System.out.println("DISPLAY EMPLOYEE RECORD MANAGEMENT");
-                    System.out.println("ENTER YOUR EMPLOYEE ID");
-                    emp_id = sc.nextInt();
-                    p = 0;
-                    for(Employee e:employee){
-                        if(e.employee_id == emp_id){
-                            p=1;
+                    if (account.isEmpty()) {
+                        System.out.println("No Accounts Found.");
+                    } else {
+                        for (Account a : account) {
+                            a.Display();
+                        }
+                    }
+
+                    break;
+
+                case 3:
+                    System.out.print("Enter Account Number: ");
+                    int depositAcc = sc.nextInt();
+
+                    boolean deposited = false;
+
+                    for (Account a : account) {
+
+                        if (a.accountnumber == depositAcc) {
+
+                            System.out.print("Enter Deposit Amount: ");
+                            int amount = sc.nextInt();
+
+                            if (amount > 0) {
+                                a.balance += amount;
+                                System.out.println("Deposit Successful.");
+                                System.out.println("New Balance: ₹" + a.balance);
+                            } else {
+                                System.out.println("Invalid Amount.");
+                            }
+
+                            deposited = true;
                             break;
                         }
                     }
-                    if(p==1){
-                        for(Employee e:employee){
-                            e.Display();
-                        }
-                    }
-                    else{
-                        System.out.println("EMPLOYEE  ID IS NOT FOUND");
-                    }
-                    break;
-                case 3:
-                    System.out.println("UPDATE SALRAY RECORD MANAGEMENT");
-                    System.out.println("ENTER YOUR EMPLOYEE IDWHICH YOU UPDATE");
-                    emp_id = sc.nextInt();
-                    p = 0;
-                    for(Employee e:employee){
-                        if(e.employee_id == emp_id){
-                            System.out.println("ENTER A NEW EMPLYEE ID");
-                            e.employee_id = sc.nextInt();
-                            sc.nextLine();
-                            System.out.println("ENTER a NEW NAME");
-                            e.name = sc.nextLine();
-                            System.out.println("ENTER A NEW DEPARTMAENT");
-                            e.department = sc.nextLine();
-                            System.out.println("ENTER A NEW DESIGNATION");
-                            e.designation = sc.nextLine();
-                            System.out.println("ENTER A NEW SALARY");
-                            e.salary = sc.nextInt();
-                            p=1;
-                        }
-                    }
-                    if(p==0){
-                        System.out.println("EMPLOYEE ID IS NOT FOUND");
-                    }
+
+                    if (!deposited)
+                        System.out.println("Account Not Found.");
+
                     break;
                 case 4:
-                    System.out.println("DELETE EMPLOYEE RECORD MANGEMENT");
-                    System.out.println("ENTER YOUR EMPLOYEE ID WHICH YOU DELETE");
-                    int deleteempid = sc.nextInt();
-                    p = 0;
-                    for (int i = 0; i < employee.size(); i++) {
-                        if (employee.get(i).employee_id == deleteempid) {
-                            employee.remove(i);   
-                            System.out.println("EMPLOYEE Record Deleted Successfully");
-                            p=1;
+                    System.out.print("Enter Account Number: ");
+                    int withdrawAcc = sc.nextInt();
+
+                    boolean withdrawn = false;
+
+                    for (Account a : account) {
+
+                        if (a.accountnumber == withdrawAcc) {
+
+                            System.out.print("Enter Withdrawal Amount: ");
+                            int amount = sc.nextInt();
+
+                            if (amount <= a.balance) {
+                                a.balance -= amount;
+                                System.out.println("Withdrawal Successful.");
+                                System.out.println("Remaining Balance: ₹" + a.balance);
+                            } else {
+                                System.out.println("Insufficient Balance.");
+                            }
+
+                            withdrawn = true;
                             break;
                         }
                     }
-                    if(p==0){
-                        System.out.println("EMPLOYEE ID IS NOT FOUND");
+                    if (!withdrawn)
+                        System.out.println("Account Not Found.");
+
+                    break;
+                case 5:
+                    System.out.print("Enter Account Number to Delete: ");
+                    int delete = sc.nextInt();
+
+                    boolean deleted = false;
+
+                    for (int i = 0; i < account.size(); i++) {
+
+                        if (account.get(i).accountnumber == delete) {
+
+                            account.remove(i);
+
+                            System.out.println("Account Deleted Successfully.");
+
+                            deleted = true;
+                            break;
+                        }
                     }
+
+                    if (!deleted)
+                        System.out.println("Account Not Found.");
+
+                    break;
+                case 0:
+                    System.out.println("Exiting Bank Account Management.");
                     break;
                 default:
-                    System.out.println("THANK YOU FOR USING EMPLOYEE  RECORD MANGEMENT❤️");
+                    System.out.println("Invalid Choice.");
+                    break;
             }
         } while(ch!=0);
-        System.out.println("PROGRAM IS FINISHED😉");
+        System.out.println("PROGRAM IS FINISHED UP😑");
         sc.close();
     }
 }
+
