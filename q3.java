@@ -1,148 +1,227 @@
-package day29;
+package day30;
 import java.util.*;
 
 public class q3 {
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
-        String s = new String();
-        s = sc.nextLine();
-        int ch;
-        do{
-            System.out.println("MENU DRIVEN STRING OPERATION SYSTEM🧵");
-            System.out.println("\n========== STRING OPERATIONS ==========");
-            System.out.println("1. Display String");
-            System.out.println("2. Find Length");
-            System.out.println("3. Convert to Uppercase");
-            System.out.println("4. Convert to Lowercase");
-            System.out.println("5. Reverse String");
-            System.out.println("6. Check Palindrome");
-            System.out.println("7. Count Vowels");
-            System.out.println("8. Count Consonants");
-            System.out.println("9. Search Character");
-            System.out.println("10. Exit");
+        int max=100;
+        int[] empId = new int[max];
+        String[] empName = new String[max];
+        String[] department = new String[max];
+        String[] designation = new String[max];
+        double[] salary = new double[max];
+
+        int count = 0;
+        int choice;
+
+        do {
+
+            System.out.println("\n========== MINI EMPLOYEE MANAGEMENT SYSTEM ==========");
+            System.out.println("1. Add Employee");
+            System.out.println("2. Display Employees");
+            System.out.println("3. Search Employee");
+            System.out.println("4. Update Employee");
+            System.out.println("5. Delete Employee");
+            System.out.println("6. Calculate Annual Salary");
+            System.out.println("7. Exit");
             System.out.print("Enter Your Choice: ");
-            ch = sc.nextInt();
-            switch (ch) {
+
+            choice = sc.nextInt();
+
+            switch (choice) {
 
                 case 1:
-                    System.out.println("String = " + s);
+
+                    if (count == max) {
+                        System.out.println("Employee List is Full!");
+                        break;
+                    }
+
+                    System.out.print("Enter Employee ID: ");
+                    empId[count] = sc.nextInt();
+                    sc.nextLine();
+
+                    System.out.print("Enter Employee Name: ");
+                    empName[count] = sc.nextLine();
+
+                    System.out.print("Enter Department: ");
+                    department[count] = sc.nextLine();
+
+                    System.out.print("Enter Designation: ");
+                    designation[count] = sc.nextLine();
+
+                    System.out.print("Enter Monthly Salary: ");
+                    salary[count] = sc.nextDouble();
+
+                    count++;
+
+                    System.out.println("Employee Added Successfully!");
                     break;
 
                 case 2:
-                    System.out.println("Length = " + s.length());
+
+                    if (count == 0) {
+                        System.out.println("No Employee Records Found.");
+                    } else {
+
+                        System.out.println("\n========== EMPLOYEE DETAILS ==========");
+
+                        for (int i = 0; i < count; i++) {
+
+                            System.out.println("\nEmployee " + (i + 1));
+                            System.out.println("ID          : " + empId[i]);
+                            System.out.println("Name        : " + empName[i]);
+                            System.out.println("Department  : " + department[i]);
+                            System.out.println("Designation : " + designation[i]);
+                            System.out.println("Salary      : " + salary[i]);
+                        }
+                    }
+
                     break;
 
                 case 3:
-                    System.out.println("Uppercase = " + s.toUpperCase());
-                    break;
 
-                case 4:
-                    System.out.println("Lowercase = " + s.toLowerCase());
-                    break;
-
-                case 5:
-
-                    String rev = "";
-
-                    for (int i = s.length() - 1; i >= 0; i--) {
-                        rev += s.charAt(i);
-                    }
-
-                    System.out.println("Reverse = " + rev);
-
-                    break;
-
-                case 6:
-
-                    rev = "";
-
-                    for (int i = s.length() - 1; i >= 0; i--) {
-                        rev += s.charAt(i);
-                    }
-
-                    if (s.equalsIgnoreCase(rev))
-                        System.out.println("Palindrome");
-                    else
-                        System.out.println("Not a Palindrome");
-
-                    break;
-
-                case 7:
-
-                    int vowels = 0;
-
-                    for (int i = 0; i < s.length(); i++) {
-
-                        char ch1 = Character.toLowerCase(s.charAt(i));
-
-                        if (ch1 == 'a' || ch1 == 'e' || ch1 == 'i'
-                                || ch1 == 'o' || ch1== 'u') {
-
-                            vowels++;
-                        }
-                    }
-
-                    System.out.println("Total Vowels = " + vowels);
-
-                    break;
-
-                case 8:
-
-                    int consonants = 0;
-
-                    for (int i = 0; i < s.length(); i++) {
-
-                        char ch1 = Character.toLowerCase(s.charAt(i));
-
-                        if (Character.isLetter(ch1)) {
-
-                            if (!(ch1 == 'a' || ch1 == 'e' || ch1 == 'i'
-                                    || ch1 == 'o' || ch1 == 'u')) {
-
-                                consonants++;
-                            }
-                        }
-                    }
-
-                    System.out.println("Total Consonants = " + consonants);
-
-                    break;
-
-                case 9:
-
-                    System.out.print("Enter Character to Search: ");
-                    char key = sc.next().charAt(0);
+                    System.out.print("Enter Employee ID to Search: ");
+                    int searchId = sc.nextInt();
 
                     boolean found = false;
 
-                    for (int i = 0; i < s.length(); i++) {
+                    for (int i = 0; i < count; i++) {
 
-                        if (s.charAt(i) == key) {
+                        if (empId[i] == searchId) {
 
-                            System.out.println("Character Found at Index " + i);
+                            System.out.println("\nEmployee Found");
+                            System.out.println("ID          : " + empId[i]);
+                            System.out.println("Name        : " + empName[i]);
+                            System.out.println("Department  : " + department[i]);
+                            System.out.println("Designation : " + designation[i]);
+                            System.out.println("Salary      : " + salary[i]);
 
                             found = true;
                             break;
                         }
                     }
 
-                    if (!found)
-                        System.out.println("Character Not Found.");
+                    if (!found) {
+                        System.out.println("Employee Not Found.");
+                    }
 
                     break;
 
-                case 10:
+                case 4:
 
-                    System.out.println("Thank You!");
+                    System.out.print("Enter Employee ID to Update: ");
+                    int updateId = sc.nextInt();
+                    sc.nextLine();
+
+                    boolean updated = false;
+
+                    for (int i = 0; i < count; i++) {
+
+                        if (empId[i] == updateId) {
+
+                            System.out.print("Enter New Name: ");
+                            empName[i] = sc.nextLine();
+
+                            System.out.print("Enter New Department: ");
+                            department[i] = sc.nextLine();
+
+                            System.out.print("Enter New Designation: ");
+                            designation[i] = sc.nextLine();
+
+                            System.out.print("Enter New Salary: ");
+                            salary[i] = sc.nextDouble();
+
+                            System.out.println("Employee Updated Successfully!");
+
+                            updated = true;
+                            break;
+                        }
+                    }
+
+                    if (!updated) {
+                        System.out.println("Employee Not Found.");
+                    }
+
+                    break;
+
+                case 5:
+
+                    System.out.print("Enter Employee ID to Delete: ");
+                    int deleteId = sc.nextInt();
+
+                    boolean deleted = false;
+
+                    for (int i = 0; i < count; i++) {
+
+                        if (empId[i] == deleteId) {
+
+                            for (int j = i; j < count - 1; j++) {
+
+                                empId[j] = empId[j + 1];
+                                empName[j] = empName[j + 1];
+                                department[j] = department[j + 1];
+                                designation[j] = designation[j + 1];
+                                salary[j] = salary[j + 1];
+                            }
+
+                            count--;
+
+                            System.out.println("Employee Deleted Successfully!");
+
+                            deleted = true;
+                            break;
+                        }
+                    }
+
+                    if (!deleted) {
+                        System.out.println("Employee Not Found.");
+                    }
+
+                    break;
+
+                case 6:
+
+                    System.out.print("Enter Employee ID: ");
+                    int id = sc.nextInt();
+
+                    boolean salaryFound = false;
+
+                    for (int i = 0; i < count; i++) {
+
+                        if (empId[i] == id) {
+
+                            double annualSalary = salary[i] * 12;
+
+                            System.out.println("Employee Name : " + empName[i]);
+                            System.out.println("Monthly Salary: " + salary[i]);
+                            System.out.println("Annual Salary : " + annualSalary);
+
+                            salaryFound = true;
+                            break;
+                        }
+                    }
+
+                    if (!salaryFound) {
+                        System.out.println("Employee Not Found.");
+                    }
+
+                    break;
+
+                case 7:
+
+                    System.out.println("THANK YOU FOR CHOSSING MINI EMPLOYEE MAANGEMNT SYSYTEM❤️");
                     break;
 
                 default:
 
-                    System.out.println("Invalid Choice.");
+                    System.out.println("Invalid Choice!");
+
             }
 
-        } while (ch != 10);
+        } while (choice != 7);
 
         sc.close();
     }
 }
+        

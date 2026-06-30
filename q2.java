@@ -1,145 +1,169 @@
-package day29;
+package day30;
 import java.util.*;
 
 public class q2 {
-    public static void main(String[] args) {
+    public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
         int ch;
-        int arr[] ={3,4,5,6,7,2,5,7,8,9,10,5,6,8};
+        int count =0;
+        int max =100;
+        String[] book_id = new String[max];
+        String[] author = new String[max];
+        String[] bookname = new String[max];
+        String[] status = new String[max];
         do{
-            System.out.println("MENU DRIVEN ARRAY OPERATIONS SYSYTEM");
-            System.out.println("1:DISPLAY THE ARRAY ELEMENTS");
-            System.out.println("2:ADD THE ARRAY ELEMENTS ");
-            System.out.println(" 3:MAXIMUN OF  ARRAY ELEMNTS");
-            System.out.println("4:MINIMUM OF ARRAY ELEMNTS");
-            System.out.println("5:AVERAGE OF ARRAY ELEMENTS");
-            System.out.println("6:COUNT OF EVEN NUMBERS IN AN ARRAY");
-            System.out.println("7:COUNT OF ODD NUMBERS IN AN ARRAY");
-            System.out.println("SORT THE ARRAY ELEMENTS");
-            System.out.println("REVERSE THE ARRAY ELEMMTS");
-            System.out.println("ENTER CHOICE");
+            System.out.println(" MINI LIBRARY RECORD MANAGEMENT");
+            System.out.println("1:ADD BOOK");
+            System.out.println("1. Add Book");
+            System.out.println("2. Display Books");
+            System.out.println("3. Search Book");
+            System.out.println("4. Issue Book");
+            System.out.println("5. Return Book");
+            System.out.println("6. Exit");
+            System.out.print("Enter Your Choice: ");
             ch = sc.nextInt();
-            switch(ch){
+
+            switch (ch) {
+
                 case 1:
-                    System.out.print("Array Elements: ");
 
-                    for (int num : arr) {
-                        System.out.print(num + " ");
+                    if (count == max) {
+                        System.out.println("Library is Full!");
+                        break;
                     }
 
-                    System.out.println();
+                    System.out.print("Enter Book ID: ");
+                    book_id[count] = sc.nextLine();
+                    sc.nextLine();
+
+                    System.out.print("Enter Book Name: ");
+                    bookname[count] = sc.nextLine();
+
+                    System.out.print("Enter Author Name: ");
+                    author[count] = sc.nextLine();
+                    status[count] = "Available";
+                    count++;
+                    System.out.println("Book Added Successfully!");
                     break;
+
                 case 2:
-                    int sum = 0;
+                    if (count == 0) {
+                        System.out.println("No Books Available.");
+                    } else {
+                        System.out.println("\n------ BOOK LIST ------");
 
-                    for (int num : arr) {
-                        sum += num;
+                        for (int i = 0; i < count; i++) {
+
+                            System.out.println("Book " + (i + 1));
+                            System.out.println("Book ID : " + book_id[i]);
+                            System.out.println("Book Name : " + bookname[i]);
+                            System.out.println("Author : " + author[i]);
+                            System.out.println("Status : " + status[i]);
+                            System.out.println("----------------------------");
+                        }
                     }
-
-                    System.out.println("Sum = " + sum);
                     break;
+
                 case 3:
-                    int max = arr[0];
 
-                    for (int num : arr) {
+                    System.out.print("Enter Book ID to Search: ");
+                    String search = sc.nextLine();
 
-                        if (num > max) {
-                            max = num;
+                    boolean found = false;
+
+                    for (int i = 0; i < count; i++) {
+
+                        if (book_id[i] == search) {
+
+                            System.out.println("Book Found!");
+                            System.out.println("Book ID : " + book_id[i]);
+                            System.out.println("Book Name : " + bookname[i]);
+                            System.out.println("Author : " + author[i]);
+                            System.out.println("Status : " + status[i]);
+
+                            found = true;
+                            break;
                         }
                     }
 
-                    System.out.println("Maximum Element = " + max);
+                    if (!found) {
+                        System.out.println("Book Not Found.");
+                    }
 
                     break;
+
                 case 4:
-                    int min = arr[0];
 
-                    for (int num : arr) {
+                    System.out.print("Enter Book ID to Issue: ");
+                    String issue = sc.nextLine();
 
-                        if (num < min) {
-                            min = num;
-                        }
-                    }
+                    boolean issued = false;
 
-                    System.out.println("Minimum Element = " + min);
+                    for (int i = 0; i < count; i++) {
 
-                    break;
-                case 5:
-                    sum = 0;
+                        if (book_id[i] == issue) {
 
-                    for (int num : arr) {
-                        sum += num;
-                    }
-
-                    double average = (double) sum / arr.length;
-
-                    System.out.println("Average = " + average);
-
-                    break;
-                case 6:
-                    int even = 0;
-
-                    for (int num : arr) {
-
-                        if (num % 2 == 0)
-                            even++;
-                    }
-
-                    System.out.println("Total Even Numbers = " + even);
-
-                    break;
-                case 7:
-                    int odd = 0;
-
-                    for (int num : arr) {
-
-                        if (num % 2 != 0)
-                            odd++;
-                    }
-
-                    System.out.println("Total Odd Numbers = " + odd);
-
-                    break;
-                case 8:
-                    for (int i = 0; i < arr.length - 1; i++) {
-
-                        for (int j = i + 1; j < arr.length; j++) {
-
-                            if (arr[i] > arr[j]) {
-
-                                int temp = arr[i];
-                                arr[i] = arr[j];
-                                arr[j] = temp;
+                            if (status[i].equals("Available")) {
+                                status[i] = "Issued";
+                                System.out.println("Book Issued Successfully!");
+                            } else {
+                                System.out.println("Book Already Issued.");
                             }
+
+                            issued = true;
+                            break;
                         }
                     }
 
-                    System.out.print("Sorted Array: ");
-
-                    for (int num : arr) {
-
-                        System.out.print(num + " ");
+                    if (!issued) {
+                        System.out.println("Book Not Found.");
                     }
 
-                    System.out.println();
-
                     break;
-                case 9:
-                    System.out.print("Reverse Array: ");
 
-                    for (int i = arr.length - 1; i >= 0; i--) {
+                case 5:
 
-                        System.out.print(arr[i] + " ");
+                    System.out.print("Enter Book ID to Return: ");
+                    String ret = sc.nextLine();
+
+                    boolean returned = false;
+
+                    for (int i = 0; i < count; i++) {
+
+                        if (book_id[i] == ret) {
+
+                            if (status[i].equals("Issued")) {
+                                status[i] = "Available";
+                                System.out.println("Book Returned Successfully!");
+                            } else {
+                                System.out.println("Book is Already Available.");
+                            }
+
+                            returned = true;
+                            break;
+                        }
                     }
 
-                    System.out.println();
+                    if (!returned) {
+                        System.out.println("Book Not Found.");
+                    }
 
                     break;
+
+                case 6:
+                    System.out.println("Thank You for Using Library System!");
+                    break;
+
+                default:
+                    System.out.println("Invalid Choice!");
             }
-        }
-        while(ch!=0);
-        System.out.println("THANKS FOR CHOSSING MENU DRIVEN STRING OPERATING SYSYTEM❤️");
+
+        } 
+        while (ch != 6);
+        System.out.println("THANKS FOR CHOOSING MINI LIBRARAY MANAGEMENT SYSTEM");
         sc.close();
     }
-    
+
 }
+    
+
